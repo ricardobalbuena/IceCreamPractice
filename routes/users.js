@@ -10,6 +10,15 @@ var User1 = require('../models/user');
 
 
 
+//Get
+
+router.get('/', async function(req, res){
+  var users1 = await User1.find();
+  console.log(users1);
+  res.render('index');
+});
+
+
 //Post CRUD
 router.post('/add', function(req, res, next) {
   var nombre = req.body.nombre;
