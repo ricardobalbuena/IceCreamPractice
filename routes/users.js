@@ -6,6 +6,77 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
+var User1 = require('../models/user');
+
+
+
+//Post CRUD
+router.post('/add', function(req, res, next) {
+  var nombre = req.body.nombre;
+  var tamano = req.body.tamano;
+  var sabor = req.body.sabor;
+  var tiempo = req.body.tiempo;
+
+  // Form Validator
+  req.checkBody('nombre','Es requerido llenar todos los campos').notEmpty();
+  req.checkBody('tamano','Es requerido llenar todos los campos').notEmpty();
+  req.checkBody('sabor','Es requerido llenar todos los campos').notEmpty();
+  req.checkBody('tiempo','Es requerido llenar todos los campos').notEmpty();
+  // Check Errors
+
+  var errors = req.validationErrors();
+
+  if(errors){
+  	res.render('index', {
+  		errors: errors
+  	});
+  } else{
+  	var newUser1 = new User1({
+      nombre: nombre,
+      tamano: tamano,
+      sabor: sabor,
+      tiempo: tiempo
+    });
+
+    User1.createUser1(newUser1, function(err, user1){
+      if(err) throw err;
+      console.log(user1);
+    });
+
+    req.flash('success', 'Se han añadido los campos');
+
+    res.location('/');
+    res.redirect('/');
+  }
+});
+
+//Anterior
+/*
+  router.post('/add', function(req, res, next) {
+    var nombre = req.body.nombre;
+    var tamano = req.body.tamano;
+    var sabor = req.body.sabor;
+    var tiempo = req.body.tiempo;
+
+    var newUser1 = new User1({
+      nombre: nombre,
+      tamano: tamano,
+      sabor: sabor,
+      tiempo: tiempo
+
+    });
+    User1.createUser1(newUser1,function(err, user1){
+      if(err) throw err;
+      console.log(user1);
+    });
+    res.location('/');
+    res.redirect('/');
+
+});
+
+
+
+*/
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -100,7 +171,6 @@ router.post('/register', upload.single('profileimage') ,function(req, res, next)
     });
 
     req.flash('success', 'You are now registered and can login');
-
     res.location('/');
     res.redirect('/');
   }

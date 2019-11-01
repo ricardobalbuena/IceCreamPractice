@@ -27,28 +27,31 @@ var UserSchema = mongoose.Schema({
 
 //Orden Schema
 var OrdenSchema = mongoose.Schema({
-    tiempo: {
-		type: String
-	},
 	nombre: {
 		type: String
 	},
-	size: {
+	tamano: {
 		type: String
 	},
 	sabor: {
+		type: String
+	},
+	tiempo: {
 		type: String
 	},
 	status:{
 		type: Boolean,
         index: false
 	}
-                 
 });
 
 
 var User = module.exports = mongoose.model('User', UserSchema);
-var OrdenSchema = module.exports = mongoose.model('Orden', OrdenSchema);
+var OrdenSchema = module.exports = mongoose.model('User1', OrdenSchema);
+
+module.exports.createUser1 = function (newUser1, callback){
+	newUser1.save(callback);
+}
 
 
 module.exports.getUserById = function(id, callback){
