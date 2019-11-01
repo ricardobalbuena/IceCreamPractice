@@ -7,4 +7,4 @@
 4) Para empezar el servicio con el comando en la consola de npm start.
 5) Abrir el browser de su preferencia e ir a la direccion de localhost:3000.
 6) Registrarse e iniciar seccion.
-7)Hacer sus pedidos.
+7) Hacer sus pedidos.
