@@ -25,7 +25,31 @@ var UserSchema = mongoose.Schema({
 	}
 });
 
+//Orden Schema
+var OrdenSchema = mongoose.Schema({
+    tiempo: {
+		type: String
+	},
+	nombre: {
+		type: String
+	},
+	size: {
+		type: String
+	},
+	sabor: {
+		type: String
+	},
+	status:{
+		type: Boolean,
+        index: false
+	}
+                 
+});
+
+
 var User = module.exports = mongoose.model('User', UserSchema);
+var OrdenSchema = module.exports = mongoose.model('Orden', OrdenSchema);
+
 
 module.exports.getUserById = function(id, callback){
 	User.findById(id, callback);

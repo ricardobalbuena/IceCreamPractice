@@ -1,5 +1,39 @@
 extends layout
 
 block content
-  h1 Miembros 
+  h1 Miembros
   p Bienvenido al area de ordenes
+
+
+  .container
+  .row
+    // FORM
+    .col-md-5
+      .card
+        .card-body
+          form(action='/add', method='post')
+            .form-group
+              input.form-control(type='text', name='nombre', placeholder='Nombre')
+            .form-group
+              input.form-control(type='text', name='sabor', placeholder='Sabor')
+            .form-group
+              input.form-control(type='text', name='tamano', placeholder='Tamaño')
+            .form-group
+              input.form-control(type='text', name='tiempo', placeholder='Tiempo (Especificar hora de agregado//24H format ej: 08:25)')
+            button.btn.btn-primary(type='submit')
+              | Add
+    // LIST
+    .col-md-7
+
+      table.table.table-bordered.table-hover
+        thead
+          tr
+            th N°
+            th Nombre
+            th Tamaño
+            th Sabor
+            th Tiempo
+        tbody
+          tr
+
+                | Pedidos
